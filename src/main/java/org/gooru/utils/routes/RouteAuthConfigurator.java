@@ -27,7 +27,7 @@ public class RouteAuthConfigurator implements RouteConfigurator {
   public void configureRoutes(Vertx vertx, Router router, JsonObject config) {
     eBus = vertx.eventBus();
     mbusTimeout = config.getLong(ConfigConstants.MBUS_TIMEOUT, RouteConstants.DEFAULT_TIMEOUT);
-    router.route(RouteConstants.API_CONVERTER_AUTH_ROUTE).handler(this::validateAccessToken);
+    router.route(RouteConstants.API_UTILS_AUTH_ROUTE).handler(this::validateAccessToken);
   }
 
   private void validateAccessToken(RoutingContext routingContext) {

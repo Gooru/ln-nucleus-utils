@@ -18,7 +18,7 @@ public class ServerVerticle extends AbstractVerticle {
   @Override
   public void start() throws Exception {
 
-    LOG.info("Starting ConverterVerticle...");
+    LOG.info("Starting ServerVerticle...");
     final HttpServer httpServer = vertx.createHttpServer();
     final Router router = Router.router(vertx);
     deployVerticles();

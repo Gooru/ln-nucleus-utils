@@ -5,7 +5,7 @@ public final class RouteConstants {
   // Helper constants
   private static final String API_VERSION = "v1";
   private static final String API_BASE_ROUTE = "/api/nucleus-utils/" + API_VERSION + "/";
-  public static final String API_CONVERTER_AUTH_ROUTE = "/api/nucleus-utils/*";
+  public static final String API_UTILS_AUTH_ROUTE = "/api/nucleus-utils/*";
 
   // Helper: Operations
   private static final String EMAILS = "emails";
