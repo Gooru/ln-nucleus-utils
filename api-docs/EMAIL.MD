@@ -1,0 +1,4 @@
+Features
+===========
+
+ - Send E-mail.
