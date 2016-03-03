@@ -3,7 +3,7 @@ package org.gooru.utils.constants;
 /**
  * Constant definition that are used to read configuration
  */
-public class ConfigConstants {
+public final class ConfigConstants {
 
   public static final String PORT = "port";
   public static final String HOST = "host";

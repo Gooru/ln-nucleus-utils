@@ -16,9 +16,9 @@ public class RouteFailureConfigurator implements RouteConfigurator {
   @Override
   public void configureRoutes(Vertx vertx, Router router, JsonObject config) {
 
-    router.put().failureHandler(frc -> handleFailures(frc));
+    router.put().failureHandler(this::handleFailures);
 
-    router.put().failureHandler(frc -> handleFailures(frc));
+    router.put().failureHandler(this::handleFailures);
   }
 
   private void handleFailures(RoutingContext frc) {

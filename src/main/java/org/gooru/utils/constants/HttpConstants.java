@@ -1,6 +1,6 @@
 package org.gooru.utils.constants;
 
-public class HttpConstants {
+public final class HttpConstants {
 
   public static final String HEADER_AUTH = "Authorization";
   public static final String HEADER_WWW_AUTHENTICATE = "WWW-Authenticate";
@@ -14,7 +14,7 @@ public class HttpConstants {
   public static final String HEADER_REFERER = "referer";
   public static final String CONTENT_TYPE_JSON = "application/json";
   public static final String HEADER_TOKEN = "Token";
-  
+
   public enum HttpStatus {
 
     SUCCESS(200, "Successful"),
@@ -49,8 +49,8 @@ public class HttpConstants {
       return this.message;
     }
   }
-  
-  private  HttpConstants() { 
+
+  private  HttpConstants() {
     throw new AssertionError();
   }
 

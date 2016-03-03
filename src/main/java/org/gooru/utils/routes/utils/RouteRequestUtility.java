@@ -9,7 +9,7 @@ import org.gooru.utils.constants.MessageConstants;
 
 import java.util.Map.Entry;
 
-public class RouteRequestUtility {
+public final class RouteRequestUtility {
 
   public static JsonObject getBodyForMessage(RoutingContext routingContext) {
 
@@ -37,7 +37,7 @@ public class RouteRequestUtility {
     return result;
   }
 
-  public RouteRequestUtility() {
+  private RouteRequestUtility() {
     throw new AssertionError();
   }
 

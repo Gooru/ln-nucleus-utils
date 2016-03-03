@@ -11,7 +11,7 @@ import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
 public final class MailTemplateParser {
 
-  public VelocityEngine velocityEngine;
+  public final VelocityEngine velocityEngine;
 
   private static final String TEMPLATE_EXT = ".vm";
 
@@ -36,7 +36,7 @@ public final class MailTemplateParser {
     return Holder.INSTANCE;
   }
 
-  private static class Holder {
+  private static final class Holder {
     private static final MailTemplateParser INSTANCE = new MailTemplateParser();
   }
 

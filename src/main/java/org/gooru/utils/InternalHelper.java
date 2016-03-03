@@ -1,8 +1,16 @@
 package org.gooru.utils;
 
-public class InternalHelper {
+import java.util.regex.Pattern;
 
-   public static String replaceSpecialCharWithUnderscore(String name) { 
-     return name.replaceAll("[^a-zA-Z0-9]+","_");
-   }
+public final class InternalHelper {
+
+  private InternalHelper() {
+    throw new AssertionError();
+  }
+
+  private static final Pattern PATTERN = Pattern.compile("[^a-zA-Z0-9]+");
+
+  public static String replaceSpecialCharWithUnderscore(String name) {
+    return PATTERN.matcher(name).replaceAll("_");
+  }
 }

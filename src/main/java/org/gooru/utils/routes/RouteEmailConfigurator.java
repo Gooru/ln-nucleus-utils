@@ -28,7 +28,7 @@ class RouteEmailConfigurator implements RouteConfigurator {
   public void configureRoutes(Vertx vertx, Router router, JsonObject config) {
     eb = vertx.eventBus();
     mbusTimeout = config.getLong(ConfigConstants.MBUS_TIMEOUT, RouteConstants.DEFAULT_TIMEOUT);
-    router.post(RouteConstants.EP_NUCLUES_UTILS_EMAIL).handler(this::sendEmail);
+    router.post(RouteConstants.EP_NUCLEUS_UTILS_EMAIL).handler(this::sendEmail);
   }
 
   private void sendEmail(RoutingContext routingContext) {

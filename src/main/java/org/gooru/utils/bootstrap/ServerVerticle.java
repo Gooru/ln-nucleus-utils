@@ -25,9 +25,7 @@ public class ServerVerticle extends AbstractVerticle {
 
     // Register the routes
     RouteConfiguration rc = new RouteConfiguration();
-    rc.forEach(configurator -> {
-      configurator.configureRoutes(vertx, router, config());
-    });
+    rc.forEach(configurator -> configurator.configureRoutes(vertx, router, config()));
 
     // If the port is not present in configuration then we end up
     // throwing as we are casting it to int. This is what we want.

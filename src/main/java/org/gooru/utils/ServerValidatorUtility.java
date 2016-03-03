@@ -10,9 +10,13 @@ import org.gooru.utils.processors.exceptions.BadRequestException;
 import org.gooru.utils.processors.exceptions.NotFoundException;
 import org.gooru.utils.processors.exceptions.UnauthorizedException;
 
-public class ServerValidatorUtility {
+public final class ServerValidatorUtility {
 
   private static final ResourceBundle MESSAGES = ResourceBundle.getBundle("messages");
+
+  private ServerValidatorUtility() {
+    throw new AssertionError();
+  }
 
   public static void addValidatorIfNullError(final JsonObject errors, final String fieldName, final Object data, final String code,
       final String... placeHolderReplacer) {
@@ -62,7 +66,7 @@ public class ServerValidatorUtility {
       throw new UnauthorizedException(generateErrorMessage(code, placeHolderReplacer));
     } else if (errorCode == HttpConstants.HttpStatus.BAD_REQUEST.getCode()) {
       throw new BadRequestException(generateErrorMessage(code, placeHolderReplacer));
-    } 
+    }
   }
 
   public static String generateMessage(final String messageCode) {
@@ -73,7 +77,7 @@ public class ServerValidatorUtility {
     String errorMsg = MESSAGES.getString(errorCode);
     if (params != null) {
       for (int index = 0; index < params.length; index++) {
-        errorMsg = errorMsg.replace("{" + index + "}", params[index]);
+        errorMsg = errorMsg.replace("{" + index + '}', params[index]);
       }
     }
     return errorMsg;
@@ -90,7 +94,7 @@ public class ServerValidatorUtility {
   public static void throwASInternalServerError() {
     throw new RuntimeException("internal api error");
   }
-  
+
   public static void throwASInternalServerError(String message) {
     throw new RuntimeException(message);
   }

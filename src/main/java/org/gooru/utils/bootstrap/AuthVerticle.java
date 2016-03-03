@@ -18,17 +18,15 @@ import org.slf4j.LoggerFactory;
 
 public class AuthVerticle extends AbstractVerticle {
   private static final Logger LOG = LoggerFactory.getLogger(AuthVerticle.class);
-  public static final String ACCESS_TOKEN_VALIDITY = "access_token_validity";
+  private static final String ACCESS_TOKEN_VALIDITY = "access_token_validity";
 
   @Override
   public void start(Future<Void> voidFuture) throws Exception {
-    vertx.executeBlocking(blockingFuture -> {
-      startApplication();
-    }, future -> {
+    vertx.executeBlocking(blockingFuture -> startApplication(), future -> {
       if (future.succeeded()) {
         voidFuture.complete();
       } else {
-        voidFuture.fail("Not able to initialize the auth handlers machiners properly");
+        voidFuture.fail("Not able to initialize the auth handlers machinery properly");
       }
     });
     EventBus eb = vertx.eventBus();

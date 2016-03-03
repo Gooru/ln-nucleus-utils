@@ -31,16 +31,9 @@ public final class MailClient implements Initializer {
       Security.addProvider(new BouncyCastleProvider());
       final Properties properties = new Properties();
       JsonObject mailConfigProps = config.getJsonObject(ConfigConstants.MAIL_CONFIG_PROPERTIES);
-      mailConfigProps.forEach(prop -> {
-        properties.put(prop.getKey(), prop.getValue());
-      });
+      mailConfigProps.forEach(prop -> properties.put(prop.getKey(), prop.getValue()));
       JsonObject mailAuthProps = config.getJsonObject(ConfigConstants.MAIL_AUTH_PROPERTIES);
-      this.mailSession = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
-        protected PasswordAuthentication getPasswordAuthentication() {
-          return new PasswordAuthentication(mailAuthProps.getString(ConfigConstants.MAIL_AUTH_USERNAME), mailAuthProps
-              .getString(ConfigConstants.MAIL_AUTH_PASSWORD));
-        }
-      });
+      this.mailSession = Session.getDefaultInstance(properties, new MailAuthenticator(mailAuthProps));
     }
   }
 
@@ -65,8 +58,20 @@ public final class MailClient implements Initializer {
     return Holder.INSTANCE;
   }
 
-  private static class Holder {
+  private static final class Holder {
     static final MailClient INSTANCE = new MailClient();
   }
 
+  private static class MailAuthenticator extends javax.mail.Authenticator {
+    private final JsonObject mailAuthProps;
+
+    public MailAuthenticator(JsonObject mailAuthProps) {
+      this.mailAuthProps = mailAuthProps;
+    }
+
+    protected PasswordAuthentication getPasswordAuthentication() {
+      return new PasswordAuthentication(mailAuthProps.getString(ConfigConstants.MAIL_AUTH_USERNAME), mailAuthProps
+          .getString(ConfigConstants.MAIL_AUTH_PASSWORD));
+    }
+  }
 }

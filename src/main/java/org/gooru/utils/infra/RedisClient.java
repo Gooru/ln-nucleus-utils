@@ -123,7 +123,7 @@ public final class RedisClient implements Initializer, Finalizer {
     }
   }
 
-  private static class Holder {
+  private static final class Holder {
     private static final RedisClient INSTANCE = new RedisClient();
   }
 }
