@@ -13,7 +13,7 @@ Current target is to make sure that we are providing an email notifier which wor
 
 - In ```nucleus-utils.json``` conf file  which as the ```mail.auth.properties``` key and it has the  values of mail service provider authentication credentials. Replace the place holder value of [USERNAME] and [PASSWORD] with the actual value before starting the service.
 
-### Mail Templates
+### Mail templates
 
 - All the email templates should be store in project src/main/resources/mail-templates folder.
 
