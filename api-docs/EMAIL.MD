@@ -24,8 +24,8 @@ Features
 | to_addresses | It should contains recepitent e-mail address |
 | cc_addresses | It should contains carbon copy e-mail address |
 | attachments  |  |
-| mail_template_subject |  |
-
+| mail_subject | If mail_template_name is mentioned, no need to set this in request json|
+| mail_template_content | If mail_template_name is mentioned, no need to set this in request json|
 
 **Authorization Header**
 
@@ -77,15 +77,14 @@ curl -i  -H "Content-Type: application/json" -H "Authorization: Token curl -i  -
 
 ```json
   {
-    "mail_template_name": "welcome_mail",
+    "mail_subject": "welcome to the classical world!!!",
+    "mail_template_content": "Awake up from dream, we are already in classical world :)",
     "to_addresses": [
-        "sheeban@gooru.org"
+        "sheeban@gooru.org",
+        "parthiban@gooru.org"
     ],
-    "attachments": [
-        {
-            "url": "http://www.cbu.edu.zm/downloads/pdf-sample.pdf",
-            "filename": "attachment.pdf"
-        }
+    "cc_addresses": [
+        "daniel@gooru.org"
     ]
   }
 ```
@@ -95,15 +94,14 @@ curl -i  -H "Content-Type: application/json" -H "Authorization: Token curl -i  -
 
 ```posh
 curl -i  -H "Content-Type: application/json" -H "Authorization: Token curl -i  -H "Content-Type: application/json" -H "Authorization: Token MTQ1NTc5OTI3NDU0Mzphbm9ueW1vdXM6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2" -X POST -d '{
-    "mail_template_name": "welcome_mail",
+    "mail_subject": "welcome to the classical world!!!",
+    "mail_template_content": "Awake up from dream, we are already in classical world :)",
     "to_addresses": [
-        "sheeban@gooru.org"
+        "sheeban@gooru.org",
+        "parthiban@gooru.org"
     ],
-    "attachments": [
-        {
-            "url": "http://www.cbu.edu.zm/downloads/pdf-sample.pdf",
-            "filename": "attachment.pdf"
-        }
+    "cc_addresses": [
+        "daniel@gooru.org"
     ]
 }' http://127.0.0.1:8080/api/nucleus-utils/v1/emails
 ```
