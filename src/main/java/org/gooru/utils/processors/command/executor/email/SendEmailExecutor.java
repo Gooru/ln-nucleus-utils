@@ -34,7 +34,7 @@ import org.gooru.utils.processors.messageProcessor.MessageContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class SendEmailExecutor implements Executor {
+final class SendEmailExecutor implements Executor {
 
   private static final Logger LOG = LoggerFactory.getLogger(SendEmailExecutor.class);
 
@@ -88,20 +88,16 @@ class SendEmailExecutor implements Executor {
       multipart.addBodyPart(bodyPartForHtml);
       if (attachments != null) {
         Stream<JsonObject> stream = attachments.stream().map(attachFile -> (JsonObject) attachFile);
-        ((Stream<JsonObject>) stream).forEach((JsonObject attachFile) -> {
+        stream.forEach((JsonObject attachFile) -> {
           try {
             URL url = new URL(attachFile.getString(HelperConstants.URL));
-            if (url != null) {
-              HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-              ByteArrayDataSource dataSource = null;
-              BodyPart messageBodyPart = new MimeBodyPart();
-              dataSource = new ByteArrayDataSource(url.openStream(), connection.getContentType());
-              if (dataSource != null) {
-                messageBodyPart.setDataHandler(new DataHandler(dataSource));
-                messageBodyPart.setFileName(attachFile.getString(HelperConstants.FILE_NAME));
-                multipart.addBodyPart(messageBodyPart);
-              }
-            }
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            ByteArrayDataSource dataSource = null;
+            BodyPart messageBodyPart = new MimeBodyPart();
+            dataSource = new ByteArrayDataSource(url.openStream(), connection.getContentType());
+            messageBodyPart.setDataHandler(new DataHandler(dataSource));
+            messageBodyPart.setFileName(attachFile.getString(HelperConstants.FILE_NAME));
+            multipart.addBodyPart(messageBodyPart);
           } catch (Exception e) {
             LOG.warn("File attachment is failed {}", e);
           }
@@ -140,7 +136,7 @@ class SendEmailExecutor implements Executor {
     }
   }
 
-  public static final Executor getInstance() {
+  public static Executor getInstance() {
     return Holder.INSTANCE;
   }
 

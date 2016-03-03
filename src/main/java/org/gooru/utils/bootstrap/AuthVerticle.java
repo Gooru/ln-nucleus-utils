@@ -5,7 +5,6 @@ import io.vertx.core.Future;
 import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.json.JsonObject;
-
 import org.gooru.utils.bootstrap.shutdown.Finalizer;
 import org.gooru.utils.bootstrap.shutdown.Finalizers;
 import org.gooru.utils.bootstrap.startup.Initializer;
@@ -18,17 +17,15 @@ import org.slf4j.LoggerFactory;
 
 public class AuthVerticle extends AbstractVerticle {
   private static final Logger LOG = LoggerFactory.getLogger(AuthVerticle.class);
-  public static final String ACCESS_TOKEN_VALIDITY = "access_token_validity";
+  private static final String ACCESS_TOKEN_VALIDITY = "access_token_validity";
 
   @Override
   public void start(Future<Void> voidFuture) throws Exception {
-    vertx.executeBlocking(blockingFuture -> {
-      startApplication();
-    }, future -> {
+    vertx.executeBlocking(blockingFuture -> startApplication(), future -> {
       if (future.succeeded()) {
         voidFuture.complete();
       } else {
-        voidFuture.fail("Not able to initialize the auth handlers machiners properly");
+        voidFuture.fail("Not able to initialize the auth handlers machinery properly");
       }
     });
     EventBus eb = vertx.eventBus();

@@ -1,6 +1,6 @@
 package org.gooru.utils.constants;
 
-public class MailTemplateConstants {
+public final class MailTemplateConstants {
   public static final String WELCOME_MAIL = "welcome_mail";
   public static final String PARENT_REGISTARTION_CONFIRMATION = "parent_registration_confirmation";
   public static final String INVITE_COLLABORATOR = "invite_collaborator";

@@ -5,7 +5,6 @@ import io.vertx.core.DeploymentOptions;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.json.JsonArray;
 import io.vertx.ext.web.Router;
-
 import org.gooru.utils.constants.ConfigConstants;
 import org.gooru.utils.routes.RouteConfiguration;
 import org.slf4j.Logger;
@@ -25,9 +24,7 @@ public class ServerVerticle extends AbstractVerticle {
 
     // Register the routes
     RouteConfiguration rc = new RouteConfiguration();
-    rc.forEach(configurator -> {
-      configurator.configureRoutes(vertx, router, config());
-    });
+    rc.forEach(configurator -> configurator.configureRoutes(vertx, router, config()));
 
     // If the port is not present in configuration then we end up
     // throwing as we are casting it to int. This is what we want.

@@ -3,7 +3,6 @@ package org.gooru.utils.bootstrap;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.eventbus.EventBus;
-
 import org.gooru.utils.constants.MessagebusEndpoints;
 import org.gooru.utils.processors.ProcessorBuilder;
 import org.gooru.utils.processors.command.executor.MessageResponse;

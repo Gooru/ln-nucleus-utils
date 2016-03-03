@@ -2,7 +2,6 @@ package org.gooru.utils.infra;
 
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
-
 import org.gooru.utils.bootstrap.startup.Initializer;
 import org.gooru.utils.constants.ConfigConstants;
 
@@ -33,7 +32,7 @@ public class ConfigRegistry implements Initializer {
     return Holder.INSTANCE;
   }
 
-  private static class Holder {
+  private static final class Holder {
     private static final ConfigRegistry INSTANCE = new ConfigRegistry();
   }
 }

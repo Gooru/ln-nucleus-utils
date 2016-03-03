@@ -1,6 +1,6 @@
 package org.gooru.utils.constants;
 
-public class MessageCodeConstants {
+public final class MessageCodeConstants {
 
   public static final String UT001 = "UT001";
   public static final String UT002 = "UT002";

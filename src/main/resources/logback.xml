@@ -21,7 +21,7 @@
     </appender>
 
     <logger name="org.gooru.utils" level="debug">
-            <appender-ref ref="FILE"/>
-            <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="STDOUT"/>
     </logger>
 </configuration>

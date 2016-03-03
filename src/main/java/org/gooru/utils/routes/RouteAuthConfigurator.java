@@ -9,7 +9,6 @@ import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
-
 import org.gooru.utils.constants.*;
 import org.gooru.utils.responses.auth.AuthResponseContextHolder;
 import org.gooru.utils.responses.auth.AuthResponseContextHolderBuilder;
@@ -41,34 +40,30 @@ public class RouteAuthConfigurator implements RouteConfigurator {
     }
     if (token == null) {
       response.setStatusCode(HttpConstants.HttpStatus.UNAUTHORIZED.getCode()).setStatusMessage(HttpConstants.HttpStatus.UNAUTHORIZED.getMessage())
-          .end();
+              .end();
     } else {
       DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout).addHeader(MessageConstants.MSG_HEADER_TOKEN, token);
-      eBus.send(
-          MessagebusEndpoints.MBEP_AUTH,
-          null,
-          options,
-          reply -> {
-            if (reply.succeeded()) {
-              AuthResponseContextHolder responseHolder = new AuthResponseContextHolderBuilder(reply.result()).build();
+      eBus.send(MessagebusEndpoints.MBEP_AUTH, null, options, reply -> {
+        if (reply.succeeded()) {
+          AuthResponseContextHolder responseHolder = new AuthResponseContextHolderBuilder(reply.result()).build();
 
-              if (responseHolder.isAuthorized()) {
-                if ((!request.method().name().equals(HttpMethod.GET.name()) && responseHolder.isAnonymous())) {
-                  routingContext.response().setStatusCode(HttpConstants.HttpStatus.FORBIDDEN.getCode())
-                      .setStatusMessage(HttpConstants.HttpStatus.FORBIDDEN.getMessage()).end();
-                } else {
-                  routingContext.put(MessageConstants.MSG_USER_CONTEXT_HOLDER, responseHolder.getUserContext());
-                  routingContext.next();
-                }
-              } else {
-                routingContext.response().setStatusCode(HttpConstants.HttpStatus.UNAUTHORIZED.getCode())
-                    .setStatusMessage(HttpConstants.HttpStatus.UNAUTHORIZED.getMessage()).end();
-              }
+          if (responseHolder.isAuthorized()) {
+            if ((!request.method().name().equals(HttpMethod.GET.name()) && responseHolder.isAnonymous())) {
+              routingContext.response().setStatusCode(HttpConstants.HttpStatus.FORBIDDEN.getCode())
+                            .setStatusMessage(HttpConstants.HttpStatus.FORBIDDEN.getMessage()).end();
             } else {
-              LOG.error("Not able to send message", reply.cause());
-              routingContext.response().setStatusCode(HttpConstants.HttpStatus.ERROR.getCode()).end();
+              routingContext.put(MessageConstants.MSG_USER_CONTEXT_HOLDER, responseHolder.getUserContext());
+              routingContext.next();
             }
-          });
+          } else {
+            routingContext.response().setStatusCode(HttpConstants.HttpStatus.UNAUTHORIZED.getCode())
+                          .setStatusMessage(HttpConstants.HttpStatus.UNAUTHORIZED.getMessage()).end();
+          }
+        } else {
+          LOG.error("Not able to send message", reply.cause());
+          routingContext.response().setStatusCode(HttpConstants.HttpStatus.ERROR.getCode()).end();
+        }
+      });
     }
 
   }

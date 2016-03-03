@@ -1,10 +1,10 @@
 package org.gooru.utils.bootstrap.shutdown;
 
+import org.gooru.utils.infra.RedisClient;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import org.gooru.utils.infra.RedisClient;
 
 public class Finalizers implements Iterable<Finalizer> {
 

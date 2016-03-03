@@ -3,11 +3,10 @@ package org.gooru.utils.routes.utils;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.eventbus.Message;
 import io.vertx.ext.web.RoutingContext;
-
 import org.gooru.utils.responses.writers.ResponseWriterBuilder;
 import org.slf4j.Logger;
 
-public class RouteResponseUtility {
+public final class RouteResponseUtility {
 
   public static void responseHandler(final RoutingContext routingContext, final AsyncResult<Message<Object>> reply, final Logger LOG) {
     if (reply.succeeded()) {
@@ -18,7 +17,7 @@ public class RouteResponseUtility {
     }
   }
 
-  public RouteResponseUtility() {
+  private RouteResponseUtility() {
     throw new AssertionError();
   }
 }

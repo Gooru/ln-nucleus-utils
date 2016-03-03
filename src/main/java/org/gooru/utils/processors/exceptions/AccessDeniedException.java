@@ -2,7 +2,7 @@ package org.gooru.utils.processors.exceptions;
 
 public class AccessDeniedException extends RuntimeException {
 
- 
+
   private static final long serialVersionUID = 255138652984987721L;
 
   public AccessDeniedException() {

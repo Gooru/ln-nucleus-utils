@@ -1,25 +1,28 @@
 {
-  "comment" : "This is bundled JSON file. Idea is that we should externalize this also as part of build. Currently this is going to hold the dev env information",
-  "redis" : {
-          "host" : "127.0.0.1",
-          "port" : 6379
+  "comment": "This is bundled JSON file. Idea is that we should externalize this also as part of build. Currently this is going to hold the dev env information",
+  "redis": {
+    "host": "127.0.0.1",
+    "port": 6379
   },
-   "http.port": 8080,
+  "http.port": 8080,
   "metrics.periodicity.seconds": 300,
   "message.bus.send.timeout.milliseconds": 30000,
   "request.body.size.max.mb": 5,
-  "verticles.deploy.list": ["org.gooru.utils.bootstrap.AuthVerticle", "org.gooru.utils.bootstrap.EmailVerticle"],
-  "mail.config.properties" : {
-  	"mail.transport.protocol" : "smtp",
-	"mail.smtp.host" : "smtp.sendgrid.net",
-	"mail.smtp.port" : "587",
-	"mail.smtp.auth" : "true"
+  "verticles.deploy.list": [
+    "org.gooru.utils.bootstrap.AuthVerticle",
+    "org.gooru.utils.bootstrap.EmailVerticle"
+  ],
+  "mail.config.properties": {
+    "mail.transport.protocol": "smtp",
+    "mail.smtp.host": "smtp.sendgrid.net",
+    "mail.smtp.port": "587",
+    "mail.smtp.auth": "true"
   },
-  "mail.auth.properties" : {
-      "username" : "[USERNAME]",
-      "password" : "[PASSWORD]"
+  "mail.auth.properties": {
+    "username": "[USERNAME]",
+    "password": "[PASSWORD]"
   },
-  "mail.sender.name" : "gooru",
-  "mail.from.address" : "noreply@goorulearning.org",
-  "mail.bcc.address" : "noreply@goorulearning.org"
+  "mail.sender.name": "gooru",
+  "mail.from.address": "noreply@goorulearning.org",
+  "mail.bcc.address": "noreply@goorulearning.org"
 }

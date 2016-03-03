@@ -4,12 +4,11 @@ import io.vertx.core.MultiMap;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
-
 import org.gooru.utils.constants.MessageConstants;
 
 import java.util.Map.Entry;
 
-public class RouteRequestUtility {
+public final class RouteRequestUtility {
 
   public static JsonObject getBodyForMessage(RoutingContext routingContext) {
 
@@ -37,7 +36,7 @@ public class RouteRequestUtility {
     return result;
   }
 
-  public RouteRequestUtility() {
+  private RouteRequestUtility() {
     throw new AssertionError();
   }
 

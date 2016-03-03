@@ -1,6 +1,6 @@
 package org.gooru.utils.constants;
 
-public class MessageConstants {
+public final class MessageConstants {
 
   public static final String MSG_HEADER_OP = "mb.operation";
   public static final String MSG_HEADER_TOKEN = "access.token";
@@ -24,8 +24,8 @@ public class MessageConstants {
   // Containers for different responses
   public static final String RESP_CONTAINER_MBUS = "mb.container";
   public static final String RESP_CONTAINER_EVENT = "mb.event";
-  
-  private MessageConstants() { 
+
+  private MessageConstants() {
     throw new AssertionError();
   }
 }

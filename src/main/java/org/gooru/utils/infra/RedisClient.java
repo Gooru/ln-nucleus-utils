@@ -2,11 +2,9 @@ package org.gooru.utils.infra;
 
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
-
 import org.gooru.utils.bootstrap.shutdown.Finalizer;
 import org.gooru.utils.bootstrap.startup.Initializer;
 import org.gooru.utils.constants.ConfigConstants;
-
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -123,7 +121,7 @@ public final class RedisClient implements Initializer, Finalizer {
     }
   }
 
-  private static class Holder {
+  private static final class Holder {
     private static final RedisClient INSTANCE = new RedisClient();
   }
 }

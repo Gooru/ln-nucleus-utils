@@ -4,7 +4,6 @@ import io.vertx.core.AsyncResult;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.RoutingContext;
-
 import org.gooru.utils.constants.HttpConstants;
 import org.gooru.utils.responses.auth.transformers.ResponseTransformer;
 import org.gooru.utils.responses.auth.transformers.ResponseTransformerBuilder;

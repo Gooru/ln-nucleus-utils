@@ -2,7 +2,6 @@ package org.gooru.utils.responses.auth.transformers;
 
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.JsonObject;
-
 import org.gooru.utils.constants.MessageConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,8 +85,8 @@ public class HttpResponseTransformer implements ResponseTransformer {
     this.headers = new HashMap<>();
     if (jsonHeaders != null && !jsonHeaders.isEmpty()) {
       Map<String, Object> headerMap = jsonHeaders.getMap();
-      for (String headerName : headerMap.keySet()) {
-        this.headers.put(headerName, headerMap.get(headerName).toString());
+      for (Map.Entry<String, Object> stringObjectEntry : headerMap.entrySet()) {
+        this.headers.put(stringObjectEntry.getKey(), stringObjectEntry.getValue().toString());
       }
     }
   }

@@ -4,7 +4,7 @@ public final class RouteConstants {
 
   // Helper constants
   private static final String API_VERSION = "v1";
-  private static final String API_BASE_ROUTE = "/api/nucleus-utils/" + API_VERSION + "/";
+  private static final String API_BASE_ROUTE = "/api/nucleus-utils/" + API_VERSION + '/';
   public static final String API_UTILS_AUTH_ROUTE = "/api/nucleus-utils/*";
 
   // Helper: Operations
@@ -15,7 +15,7 @@ public final class RouteConstants {
   // point instead of reusing the same
 
 
-  public static final String EP_NUCLUES_UTILS_EMAIL = API_BASE_ROUTE + EMAILS;
+  public static final String EP_NUCLEUS_UTILS_EMAIL = API_BASE_ROUTE + EMAILS;
 
   public static final long DEFAULT_TIMEOUT = 30000L;
 
