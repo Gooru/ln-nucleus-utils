@@ -20,8 +20,7 @@
         </encoder>
     </appender>
 
-    <logger name="org.gooru.utils" level="debug">
+    <logger name="org.gooru.nucleus" level="debug">
         <appender-ref ref="FILE"/>
-        <appender-ref ref="STDOUT"/>
     </logger>
 </configuration>
