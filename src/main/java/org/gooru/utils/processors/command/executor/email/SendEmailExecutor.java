@@ -5,6 +5,7 @@ import io.vertx.core.json.JsonObject;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.IntStream;
@@ -22,7 +23,9 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 
 import org.gooru.utils.MailTemplateParser;
+import org.gooru.utils.ServerValidatorUtility;
 import org.gooru.utils.constants.HelperConstants;
+import org.gooru.utils.constants.MessageCodeConstants;
 import org.gooru.utils.infra.ConfigRegistry;
 import org.gooru.utils.infra.MailClient;
 import org.gooru.utils.processors.command.executor.Executor;
@@ -50,10 +53,26 @@ class SendEmailExecutor implements Executor {
   public MessageResponse execute(MessageContext messageContext) {
     JsonObject requestBody = messageContext.requestBody();
     final String templateName = requestBody.getString(HelperConstants.MAIL_TEMPLATE_NAME);
-    final String subject = MAIL_TEMPLATE.getString(templateName);
-    Map<?, ?> contextData = requestBody.getJsonObject(HelperConstants.MAIL_TEMPLATE_CONTEXT).getMap();
-    final String template = mailTemplateParser.getTemplate(templateName, contextData);
+    JsonObject contextJsonData = requestBody.getJsonObject(HelperConstants.MAIL_TEMPLATE_CONTEXT);
+    Map<?, ?> contextData = null;
+    String subject = null;
+    String template = null;
+    if (contextJsonData != null) {
+      contextData = contextJsonData.getMap();
+    } else {
+      contextData = new HashMap<>();
+    }
+    if (templateName != null) {
+      subject = MAIL_TEMPLATE.getString(templateName);
+      template = mailTemplateParser.getTemplate(templateName, contextData);
+    } else {
+      subject = requestBody.getString(HelperConstants.MAIL_SUBJECT);
+      template = requestBody.getString(HelperConstants.MAIL_TEMPLATE_CONTENT);
+    }
+    ServerValidatorUtility.reject(subject == null, MessageCodeConstants.UT001, 400);
+    ServerValidatorUtility.reject(template == null, MessageCodeConstants.UT002, 400);
     final JsonArray toAddresses = requestBody.getJsonArray(HelperConstants.TO_ADDRESSES);
+    ServerValidatorUtility.reject(toAddresses == null, MessageCodeConstants.UT003, 400);
     final JsonArray ccAddresses = requestBody.getJsonArray(HelperConstants.CC_ADDRESSES);
     final JsonArray attachments = requestBody.getJsonArray(HelperConstants.MAIL_ATTACHMENTS);
     sendMail(subject, template, attachments, toAddresses, ccAddresses);
@@ -119,7 +138,6 @@ class SendEmailExecutor implements Executor {
     } catch (Exception e) {
       LOG.warn("Failed to send the mail {}", e);
     }
-
   }
 
   public static final Executor getInstance() {

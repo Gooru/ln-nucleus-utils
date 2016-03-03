@@ -10,7 +10,9 @@ public final class HelperConstants {
   public static final String TO_ADDRESSES = "to_addresses";
   public static final String CC_ADDRESSES = "cc_addresses";
   public static final String MAIL_ATTACHMENTS = "attachments";
-
+  public static final String MAIL_SUBJECT = "subject";
+  public static final String MAIL_TEMPLATE_CONTENT = "mail_template_content";
+  
   private HelperConstants() {
     throw new AssertionError();
   }
