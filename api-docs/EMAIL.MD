@@ -3,29 +3,30 @@ Features
 
  - Send E-mail
 
-###Send E-mail.
+
+###Send E-mail
 
 **Rest API details**
 
 | Name | Summary |
 |------------------------|--------|
 | HTTP Method | POST |
-| End Point | /api/nucleus-utils/emails |
+| End Point | /api/nucleus-utils/v1/emails |
 | Auth | Required |
-| Request Body Type | None |
-| Request Body  | None |
+| Request Body Type | JSON |
 | Response Code | 200 Successful |
 
 **Request body fields**
+
 | Name | command |
 |------------------------|--------|
-| mail_template_name | either mail_template_name or mail_template_content should exists in json |
-| mail_template_context | template  placeholder replace value, should in JSON format |
-| to_addresses | It should contains recepitent e-mail address |
-| cc_addresses | It should contains carbon copy e-mail address |
-| attachments  |  |
-| mail_subject | If mail_template_name is mentioned, no need to set this in request json|
-| mail_template_content | If mail_template_name is mentioned, no need to set this in request json|
+| mail_template_name | either mail_template_name or mail_template_content should exists in request body json. |
+| mail_template_context | template  placeholder replace value, should in JSON format. |
+| to_addresses | It should contains recepitent e-mail address. |
+| cc_addresses | It should contains carbon copy e-mail address. |
+| attachments  | It can have file attachment urls and names. |
+| mail_subject | If mail_template_name is mentioned, no need to set this in request json.|
+| mail_template_content | If mail_template_name is mentioned, no need to set this in request json.|
 
 **Authorization Header**
 
@@ -67,7 +68,7 @@ curl -i  -H "Content-Type: application/json" -H "Authorization: Token curl -i  -
             "filename": "attachment.pdf"
         }
     ]
-}' http://127.0.0.1:8080/api/nucleus-utils/v1/emails
+}' http://nucleus.gooru.org/api/nucleus-utils/v1/emails
 ```
 
 
@@ -103,6 +104,6 @@ curl -i  -H "Content-Type: application/json" -H "Authorization: Token curl -i  -
     "cc_addresses": [
         "daniel@gooru.org"
     ]
-}' http://127.0.0.1:8080/api/nucleus-utils/v1/emails
+}' http://nucleus.gooru.org/api/nucleus-utils/v1/emails
 ```
 
