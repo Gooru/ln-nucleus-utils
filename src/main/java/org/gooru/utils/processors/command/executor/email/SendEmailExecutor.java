@@ -79,7 +79,7 @@ final class SendEmailExecutor implements Executor {
     return new MessageResponse.Builder().setResponseBody(null).setContentTypeJson().setStatusOkay().successful().build();
   }
 
-  private void sendMail(String subject, String template, JsonArray attachments, JsonArray toAddresses, JsonArray ccAddress) {
+  private void sendMail(String subject, String template, JsonArray attachments, JsonArray toAddresses, JsonArray ccAddresses) {
     MimeMessage message = mailClient.getMimeMessage();
     Multipart multipart = new MimeMultipart();
     BodyPart bodyPartForHtml = new MimeBodyPart();
@@ -115,11 +115,11 @@ final class SendEmailExecutor implements Executor {
         }
       });
       message.setRecipients(Message.RecipientType.TO, toAddress);
-      if (ccAddress != null && ccAddress.size() > 0) {
-        Address[] addresses = new Address[toAddresses.size()];
-        IntStream.range(0, ccAddress.size()).forEach(index -> {
+      if (ccAddresses != null && ccAddresses.size() > 0) {
+        Address[] addresses = new Address[ccAddresses.size()];
+        IntStream.range(0, ccAddresses.size()).forEach(index -> {
           try {
-            addresses[index] = new InternetAddress(toAddresses.getString(index));
+            addresses[index] = new InternetAddress(ccAddresses.getString(index));
           } catch (Exception e) {
             LOG.warn("Failed to set the cc address {}", e);
           }
@@ -133,6 +133,7 @@ final class SendEmailExecutor implements Executor {
       mailClient.sendMail(message);
     } catch (Exception e) {
       LOG.warn("Failed to send the mail {}", e);
+      ServerValidatorUtility.throwASInternalServerError();
     }
   }
 
