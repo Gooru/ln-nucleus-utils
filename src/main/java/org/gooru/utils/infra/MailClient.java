@@ -2,22 +2,20 @@ package org.gooru.utils.infra;
 
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
-
-import java.security.Security;
-import java.util.Properties;
-
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.MimeMessage;
-
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.gooru.utils.ServerValidatorUtility;
 import org.gooru.utils.bootstrap.startup.Initializer;
 import org.gooru.utils.constants.ConfigConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.MimeMessage;
+import java.security.Security;
+import java.util.Properties;
 
 public final class MailClient implements Initializer {
 
@@ -70,8 +68,8 @@ public final class MailClient implements Initializer {
     }
 
     protected PasswordAuthentication getPasswordAuthentication() {
-      return new PasswordAuthentication(mailAuthProps.getString(ConfigConstants.MAIL_AUTH_USERNAME), mailAuthProps
-          .getString(ConfigConstants.MAIL_AUTH_PASSWORD));
+      return new PasswordAuthentication(mailAuthProps.getString(ConfigConstants.MAIL_AUTH_USERNAME),
+        mailAuthProps.getString(ConfigConstants.MAIL_AUTH_PASSWORD));
     }
   }
 }

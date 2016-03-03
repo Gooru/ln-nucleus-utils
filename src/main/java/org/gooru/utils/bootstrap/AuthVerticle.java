@@ -5,7 +5,6 @@ import io.vertx.core.Future;
 import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.json.JsonObject;
-
 import org.gooru.utils.bootstrap.shutdown.Finalizer;
 import org.gooru.utils.bootstrap.shutdown.Finalizers;
 import org.gooru.utils.bootstrap.startup.Initializer;

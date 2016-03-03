@@ -1,14 +1,13 @@
 package org.gooru.utils;
 
 import io.vertx.core.json.JsonObject;
-
-import java.util.ResourceBundle;
-
 import org.gooru.utils.constants.HttpConstants;
 import org.gooru.utils.processors.exceptions.AccessDeniedException;
 import org.gooru.utils.processors.exceptions.BadRequestException;
 import org.gooru.utils.processors.exceptions.NotFoundException;
 import org.gooru.utils.processors.exceptions.UnauthorizedException;
+
+import java.util.ResourceBundle;
 
 public final class ServerValidatorUtility {
 
@@ -19,21 +18,21 @@ public final class ServerValidatorUtility {
   }
 
   public static void addValidatorIfNullError(final JsonObject errors, final String fieldName, final Object data, final String code,
-      final String... placeHolderReplacer) {
+                                             final String... placeHolderReplacer) {
     if (data == null) {
       addError(errors, fieldName, code, placeHolderReplacer);
     }
   }
 
   public static void addValidatorIfNullOrEmptyError(final JsonObject errors, final String fieldName, final String data, final String code,
-      final String... placeHolderReplacer) {
+                                                    final String... placeHolderReplacer) {
     if (data == null || data.trim().length() == 0) {
       addError(errors, fieldName, code, placeHolderReplacer);
     }
   }
 
   public static void addValidator(final JsonObject errors, final Boolean data, final String fieldName, final String code,
-      final String... placeHolderReplacer) {
+                                  final String... placeHolderReplacer) {
     if (data) {
       addError(errors, fieldName, code, placeHolderReplacer);
     }

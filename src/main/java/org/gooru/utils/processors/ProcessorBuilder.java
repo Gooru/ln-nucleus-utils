@@ -1,7 +1,6 @@
 package org.gooru.utils.processors;
 
 import io.vertx.core.eventbus.Message;
-
 import org.gooru.utils.processors.messageProcessor.MessageProcessor;
 import org.gooru.utils.processors.messageProcessor.Processor;
 

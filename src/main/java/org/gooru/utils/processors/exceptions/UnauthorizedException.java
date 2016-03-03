@@ -3,7 +3,7 @@ package org.gooru.utils.processors.exceptions;
 public class UnauthorizedException extends RuntimeException {
 
   /**
-   * 
+   *
    */
   private static final long serialVersionUID = -8724444379963076817L;
 

@@ -1,10 +1,9 @@
 package org.gooru.utils.processors.messageProcessor;
 
-import org.gooru.utils.constants.MessageConstants;
-
 import io.vertx.core.MultiMap;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.JsonObject;
+import org.gooru.utils.constants.MessageConstants;
 
 
 public class MessageContextHolder implements MessageContext {

@@ -2,7 +2,6 @@ package org.gooru.utils.infra;
 
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
-
 import org.gooru.utils.bootstrap.startup.Initializer;
 import org.gooru.utils.constants.ConfigConstants;
 

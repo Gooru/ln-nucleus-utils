@@ -2,13 +2,15 @@ package org.gooru.utils.processors.command.executor.email;
 
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
-
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Map;
-import java.util.ResourceBundle;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import org.gooru.utils.MailTemplateParser;
+import org.gooru.utils.constants.HelperConstants;
+import org.gooru.utils.infra.ConfigRegistry;
+import org.gooru.utils.infra.MailClient;
+import org.gooru.utils.processors.command.executor.Executor;
+import org.gooru.utils.processors.command.executor.MessageResponse;
+import org.gooru.utils.processors.messageProcessor.MessageContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.activation.DataHandler;
 import javax.mail.Address;
@@ -20,16 +22,12 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
-
-import org.gooru.utils.MailTemplateParser;
-import org.gooru.utils.constants.HelperConstants;
-import org.gooru.utils.infra.ConfigRegistry;
-import org.gooru.utils.infra.MailClient;
-import org.gooru.utils.processors.command.executor.Executor;
-import org.gooru.utils.processors.command.executor.MessageResponse;
-import org.gooru.utils.processors.messageProcessor.MessageContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 final class SendEmailExecutor implements Executor {
 

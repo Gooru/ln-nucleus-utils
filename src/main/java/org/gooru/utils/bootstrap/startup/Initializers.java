@@ -1,12 +1,12 @@
 package org.gooru.utils.bootstrap.startup;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import org.gooru.utils.infra.ConfigRegistry;
 import org.gooru.utils.infra.MailClient;
 import org.gooru.utils.infra.RedisClient;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class Initializers implements Iterable<Initializer> {
   private final Iterator<Initializer> internalIterator;

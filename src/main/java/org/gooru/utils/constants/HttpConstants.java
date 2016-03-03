@@ -50,7 +50,7 @@ public final class HttpConstants {
     }
   }
 
-  private  HttpConstants() {
+  private HttpConstants() {
     throw new AssertionError();
   }
 

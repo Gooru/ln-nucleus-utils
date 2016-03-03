@@ -2,7 +2,6 @@ package org.gooru.utils.processors.command.executor;
 
 import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.json.JsonObject;
-
 import org.gooru.utils.constants.HttpConstants;
 import org.gooru.utils.constants.MessageConstants;
 import org.gooru.utils.processors.exceptions.AccessDeniedException;
@@ -167,17 +166,16 @@ public final class MessageResponse {
 
     private JsonObject buildErrorResponse() {
       JsonObject result = new JsonObject().put(MessageConstants.MSG_OP_STATUS, MessageConstants.MSG_OP_STATUS_ERROR);
-      result.put(
-          MessageConstants.RESP_CONTAINER_MBUS,
-          new JsonObject().put(MessageConstants.MSG_HTTP_STATUS, HttpConstants.HttpStatus.ERROR.getCode()).put(MessageConstants.MSG_HTTP_BODY,
-              new JsonObject().put(MessageConstants.MSG_OP_STATUS_ERROR, new JsonObject())));
+      result.put(MessageConstants.RESP_CONTAINER_MBUS,
+        new JsonObject().put(MessageConstants.MSG_HTTP_STATUS, HttpConstants.HttpStatus.ERROR.getCode())
+                        .put(MessageConstants.MSG_HTTP_BODY, new JsonObject().put(MessageConstants.MSG_OP_STATUS_ERROR, new JsonObject())));
       return result;
     }
 
     private JsonObject buildResponseContainer() {
       JsonObject result = new JsonObject();
       result.put(MessageConstants.MSG_HTTP_STATUS, this.httpStatus.getCode()).put(MessageConstants.MSG_HTTP_HEADERS, this.headers)
-          .put(MessageConstants.MSG_HTTP_BODY, buildHttpBody());
+            .put(MessageConstants.MSG_HTTP_BODY, buildHttpBody());
       return result;
     }
 
@@ -187,15 +185,15 @@ public final class MessageResponse {
         this.responseBody = new JsonObject();
       }
       switch (this.status) {
-      case MessageConstants.MSG_OP_STATUS_SUCCESS:
-        result.put(MessageConstants.MSG_HTTP_RESPONSE, responseBody);
-        break;
-      case MessageConstants.MSG_OP_STATUS_ERROR:
-        result.put(MessageConstants.MSG_HTTP_ERROR, responseBody);
-        break;
-      case MessageConstants.MSG_OP_STATUS_VALIDATION_ERROR:
-        result.put(MessageConstants.MSG_HTTP_VALIDATION_ERROR, responseBody);
-        break;
+        case MessageConstants.MSG_OP_STATUS_SUCCESS:
+          result.put(MessageConstants.MSG_HTTP_RESPONSE, responseBody);
+          break;
+        case MessageConstants.MSG_OP_STATUS_ERROR:
+          result.put(MessageConstants.MSG_HTTP_ERROR, responseBody);
+          break;
+        case MessageConstants.MSG_OP_STATUS_VALIDATION_ERROR:
+          result.put(MessageConstants.MSG_HTTP_VALIDATION_ERROR, responseBody);
+          break;
       }
       return result;
     }

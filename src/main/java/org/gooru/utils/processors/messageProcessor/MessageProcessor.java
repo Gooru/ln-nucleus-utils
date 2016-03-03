@@ -2,7 +2,6 @@ package org.gooru.utils.processors.messageProcessor;
 
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.JsonObject;
-
 import org.gooru.utils.constants.CommandConstants;
 import org.gooru.utils.processors.command.executor.MessageResponse;
 import org.gooru.utils.processors.command.executor.email.EmailExecutorFactory;
@@ -30,12 +29,12 @@ public class MessageProcessor implements Processor {
       }
       MessageContext messageContext = new MessageContextHolder(message);
       switch (messageContext.command()) {
-      case CommandConstants.SEND_EMAIL:
-        result = EmailExecutorFactory.SendEmailExecutor().execute(messageContext);
-        break;
-      default:
-        LOG.error("Invalid command type passed in, not able to handle");
-        throw new InvalidRequestException();
+        case CommandConstants.SEND_EMAIL:
+          result = EmailExecutorFactory.SendEmailExecutor().execute(messageContext);
+          break;
+        default:
+          LOG.error("Invalid command type passed in, not able to handle");
+          throw new InvalidRequestException();
       }
       return result;
     } catch (Throwable throwable) {

@@ -5,7 +5,6 @@ import io.vertx.core.DeploymentOptions;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.json.JsonArray;
 import io.vertx.ext.web.Router;
-
 import org.gooru.utils.constants.ConfigConstants;
 import org.gooru.utils.routes.RouteConfiguration;
 import org.slf4j.Logger;
