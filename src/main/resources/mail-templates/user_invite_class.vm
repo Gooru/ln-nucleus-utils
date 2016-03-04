@@ -1,0 +1,34 @@
+<html>
+   <head></head>
+   <body>
+      <div style="font-family: arial;width: 717px;color:#666;height: 411px;">
+         <div style="text-align:center"><img src="http://sfs.gooru.org/media/gooru/images/mail/footerGooru.png"></div>
+         <div style="height: 440px; margin-left: 30px;">
+            <div style="color: #666; width: 100%; font-size: 14px; float: left; margin-top: 30px;">
+               Hello there!
+               <div style="margin-top: 20px;">Your teacher, <b>${teachername}</b>, has invited you to join the class "${title}". Join this class by clicking the button below:</div>
+               <div style="margin-top: 20px;">
+                  <div style="background:none repeat scroll 0 0 #0f76bb;border:0 none;color:white;font-size:12px;min-height:32px;width:218px;border-radius:3px 3px 3px 3px;line-height: 31px;text-align:center">
+                     <a style="color:#ffffff;text-decoration:none" href="${serverpath}/#students-view&id=${gooruOid}&pageSize=10&pageNum=0&pos=1&userEmailId=${memberMailId}" target="_blank">
+                        <div style="font-size:13px;font-family:arial">Join this class</div>
+                     </a>
+                  </div>
+               </div>
+               <div style="margin-top: 20px;">If you are accessing via iPad, please enter the following class code to join.</div>
+               <div style="margin-top: 20px;border:1px solid #ccc;color:#666;width: 75px;padding: 4px;">${classCode}</div>
+               <div style="margin-top: 20px;">This invitation will only work for you, so make sure that you sign in to Gooru with this email address. If you don't have an account yet, <a href= "${serverpath}/#home&callback=signup&type=2">sign up here</a>!\n</div>
+               <div style="margin-top: 15px;">Happy Learning!</div>
+               <div style="margin-top: 15px;">
+                  <div>Thanks!</div>
+                  <div>The Gooru Team</div>
+                  <div> <a style="color: #1076bb;" href="http://www.facebook.com/gooru" target="_blank">Facebook</a> | <a style="color: #1076bb;" href="http://www.twitter.com/gooru" target="_blank">Twitter</a> </div>
+               </div>
+               \n
+               <div style="margin-top: 15px;">
+                  <div style="font-family: arial;font-size:12px;">Please do not reply to this email. Replies to this email will not be responded to or read.</div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

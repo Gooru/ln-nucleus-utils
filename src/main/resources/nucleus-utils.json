@@ -9,8 +9,8 @@
   "message.bus.send.timeout.milliseconds": 30000,
   "request.body.size.max.mb": 5,
   "verticles.deploy.list": [
-    "org.gooru.utils.bootstrap.AuthVerticle",
-    "org.gooru.utils.bootstrap.EmailVerticle"
+    "org.gooru.nucleus.utils.bootstrap.AuthVerticle",
+    "org.gooru.nucleus.utils.bootstrap.EmailVerticle"
   ],
   "mail.config.properties": {
     "mail.transport.protocol": "smtp",
