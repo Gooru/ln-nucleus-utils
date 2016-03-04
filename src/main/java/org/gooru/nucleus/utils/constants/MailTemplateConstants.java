@@ -10,6 +10,7 @@ public final class MailTemplateConstants {
   public static final String CHILD_USER_REGISTARTION_CONFIRMATION = "child_user_registration_confirmation";
   public static final String USER_INVITE_CLASS = "user_invite_class";
   public static final String USER_INVITE_OPEN_CLASS = "user_invite_open_class";
+  public static final String PASSWORD_CHANGE_REQUEST = "password_change_request";
 
   private MailTemplateConstants() {
     throw new AssertionError();
