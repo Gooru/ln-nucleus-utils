@@ -12,7 +12,6 @@ import org.gooru.nucleus.utils.constants.MessageConstants;
 public final class RouteRequestUtility {
 
   public static JsonObject getBodyForMessage(RoutingContext routingContext) {
-
     JsonObject result = new JsonObject();
     JsonObject httpBody = null;
     if (!routingContext.request().method().name().equals(HttpMethod.GET.name()) && routingContext.getBody().length() > 0) {
