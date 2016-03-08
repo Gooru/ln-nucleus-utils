@@ -1,6 +1,5 @@
 package org.gooru.nucleus.utils.routes;
 
-import io.netty.handler.codec.http.HttpMethod;
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.eventbus.EventBus;
@@ -53,17 +52,13 @@ public class RouteAuthConfigurator implements RouteConfigurator {
           AuthResponseContextHolder responseHolder = new AuthResponseContextHolderBuilder(reply.result()).build();
 
           if (responseHolder.isAuthorized()) {
-            if ((!request.method().name().equals(HttpMethod.GET.name()) && responseHolder.isAnonymous())) {
-              routingContext.response().setStatusCode(HttpConstants.HttpStatus.FORBIDDEN.getCode())
-                            .setStatusMessage(HttpConstants.HttpStatus.FORBIDDEN.getMessage()).end();
-            } else {
               routingContext.put(MessageConstants.MSG_USER_CONTEXT_HOLDER, responseHolder.getUserContext());
               routingContext.next();
-            }
           } else {
             routingContext.response().setStatusCode(HttpConstants.HttpStatus.UNAUTHORIZED.getCode())
                           .setStatusMessage(HttpConstants.HttpStatus.UNAUTHORIZED.getMessage()).end();
           }
+          
         } else {
           LOG.error("Not able to send message", reply.cause());
           routingContext.response().setStatusCode(HttpConstants.HttpStatus.ERROR.getCode()).end();
