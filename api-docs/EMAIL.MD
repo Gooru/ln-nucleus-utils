@@ -57,7 +57,7 @@ Authorization: Token MTQ1NTc5OTI3NDU0Mzphbm9ueW1vdXM6YmE5NTZhOTctYWUxNS0xMWU1LWE
 **CURL snippet**
 
 ```posh
-curl -i  -H "Content-Type: application/json" -H "Authorization: Token curl -i  -H "Content-Type: application/json" -H "Authorization: Token MTQ1NTc5OTI3NDU0Mzphbm9ueW1vdXM6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2" -X POST -d '{
+curl -i  -H "Content-Type: application/json" -H "Authorization: Token MTQ1NTc5OTI3NDU0Mzphbm9ueW1vdXM6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2" -X POST -d '{
     "mail_template_name": "welcome_mail",
     "to_addresses": [
         "sheeban@gooru.org"
@@ -94,7 +94,7 @@ curl -i  -H "Content-Type: application/json" -H "Authorization: Token curl -i  -
 **CURL snippet**
 
 ```posh
-curl -i  -H "Content-Type: application/json" -H "Authorization: Token curl -i  -H "Content-Type: application/json" -H "Authorization: Token MTQ1NTc5OTI3NDU0Mzphbm9ueW1vdXM6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2" -X POST -d '{
+curl -i  -H "Content-Type: application/json" -H "Authorization: Token MTQ1NTc5OTI3NDU0Mzphbm9ueW1vdXM6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2" -X POST -d '{
     "mail_subject": "welcome to the classical world!!!",
     "mail_template_content": "Awake up from dream, we are already in classical world :)",
     "to_addresses": [
