@@ -12,7 +12,7 @@
                Hello there! 
                <div style="margin-top: 20px;">
                   <div>We're excited to welcome you to the Gooru community! Now you can get started finding, remixing, and sharing the best free K-12 education resources on the web. To complete your registration, simply click on the link below:</div>
-                  <div style="margin-top: 20px;">http://www.gooru.org/confirm-mail?token=${token}</div>
+                  <div style="margin-top: 20px;">http://nucleus.gooru.org/confirm-mail?token=${token}</div>
                </div>
                <div style="margin-top: 15px;">If you have any questions or issues, please contact us at support@gooru.org. </div>
                <div style="margin-top: 15px;">
