@@ -22,6 +22,7 @@ public final class ConfigConstants {
     public static final String MBUS_TIMEOUT = "message.bus.send.timeout.milliseconds";
     public static final String MAX_REQ_BODY_SIZE = "request.body.size.max.mb";
     public static final String MAIL_TEMPLATES_PATH = "mail.templates.path";
+    public static final String MAIL_LINKS_BASE_URL = "mail.link.base.url";
 
     private ConfigConstants() {
         throw new AssertionError();

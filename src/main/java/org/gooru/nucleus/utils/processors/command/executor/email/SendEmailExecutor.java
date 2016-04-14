@@ -66,7 +66,7 @@ final class SendEmailExecutor implements Executor {
         JsonObject requestBody = messageContext.requestBody();
         final String templateName = requestBody.getString(HelperConstants.MAIL_TEMPLATE_NAME);
         JsonObject contextJsonData = requestBody.getJsonObject(HelperConstants.MAIL_TEMPLATE_CONTEXT);
-        Map<?, ?> contextData = null;
+        Map<String, Object> contextData = null;
         String subject = null;
         String template = null;
         if (contextJsonData != null) {
@@ -74,6 +74,7 @@ final class SendEmailExecutor implements Executor {
         } else {
             contextData = new HashMap<>();
         }
+        contextData.put(HelperConstants.MAIL_BASE_URL, configRegistry.getMailLinkBaseUrl());
         if (templateName != null) {
             subject = MAIL_TEMPLATE.getString(templateName);
             template = mailTemplateParser.getTemplate(templateName, contextData);

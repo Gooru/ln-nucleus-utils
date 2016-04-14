@@ -32,6 +32,10 @@ public class ConfigRegistry implements Initializer {
     public String getMailTemplatePath() {
         return config.getString(ConfigConstants.MAIL_TEMPLATES_PATH);
     }
+    
+    public String getMailLinkBaseUrl() {
+        return config.getString(ConfigConstants.MAIL_LINKS_BASE_URL);
+    }
 
     public static ConfigRegistry instance() {
         return Holder.INSTANCE;

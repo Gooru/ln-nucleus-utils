@@ -12,6 +12,7 @@ public final class HelperConstants {
     public static final String MAIL_ATTACHMENTS = "attachments";
     public static final String MAIL_SUBJECT = "mail_subject";
     public static final String MAIL_TEMPLATE_CONTENT = "mail_template_content";
+    public static final String MAIL_BASE_URL = "base_url";
 
     private HelperConstants() {
         throw new AssertionError();
