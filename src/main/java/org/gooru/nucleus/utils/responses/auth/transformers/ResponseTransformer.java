@@ -5,11 +5,11 @@ import io.vertx.core.json.JsonObject;
 import java.util.Map;
 
 public interface ResponseTransformer {
-  void transform();
+    void transform();
 
-  JsonObject transformedBody();
+    JsonObject transformedBody();
 
-  Map<String, String> transformedHeaders();
+    Map<String, String> transformedHeaders();
 
-  int transformedStatus();
+    int transformedStatus();
 }

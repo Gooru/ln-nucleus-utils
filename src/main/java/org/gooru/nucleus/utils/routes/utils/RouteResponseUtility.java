@@ -9,16 +9,17 @@ import org.slf4j.Logger;
 
 public final class RouteResponseUtility {
 
-  public static void responseHandler(final RoutingContext routingContext, final AsyncResult<Message<Object>> reply, final Logger LOG) {
-    if (reply.succeeded()) {
-      new ResponseWriterBuilder(routingContext, reply).build().writeResponse();
-    } else {
-      LOG.error("Not able to send message", reply.cause());
-      routingContext.response().setStatusCode(500).end();
+    public static void responseHandler(final RoutingContext routingContext, final AsyncResult<Message<Object>> reply,
+        final Logger LOG) {
+        if (reply.succeeded()) {
+            new ResponseWriterBuilder(routingContext, reply).build().writeResponse();
+        } else {
+            LOG.error("Not able to send message", reply.cause());
+            routingContext.response().setStatusCode(500).end();
+        }
     }
-  }
 
-  private RouteResponseUtility() {
-    throw new AssertionError();
-  }
+    private RouteResponseUtility() {
+        throw new AssertionError();
+    }
 }

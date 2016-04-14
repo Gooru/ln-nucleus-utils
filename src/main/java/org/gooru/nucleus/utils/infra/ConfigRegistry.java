@@ -8,32 +8,36 @@ import org.gooru.nucleus.utils.constants.ConfigConstants;
 
 public class ConfigRegistry implements Initializer {
 
-  private JsonObject config;
+    private JsonObject config;
 
-  @Override
-  public void initializeComponent(Vertx vertx, JsonObject config) {
-    synchronized (Holder.INSTANCE) {
-      this.config = config;
+    @Override
+    public void initializeComponent(Vertx vertx, JsonObject config) {
+        synchronized (Holder.INSTANCE) {
+            this.config = config;
+        }
     }
-  }
 
-  public String getMailFromAddress() {
-    return config.getString(ConfigConstants.MAIL_FROM_ADDRESS);
-  }
+    public String getMailFromAddress() {
+        return config.getString(ConfigConstants.MAIL_FROM_ADDRESS);
+    }
 
-  public String getMailSenderName() {
-    return config.getString(ConfigConstants.MAIL_SENDER_NAME);
-  }
+    public String getMailSenderName() {
+        return config.getString(ConfigConstants.MAIL_SENDER_NAME);
+    }
 
-  public String getMailBCCAddress() {
-    return config.getString(ConfigConstants.MAIL_BCC_ADDRESS);
-  }
+    public String getMailBCCAddress() {
+        return config.getString(ConfigConstants.MAIL_BCC_ADDRESS);
+    }
 
-  public static ConfigRegistry instance() {
-    return Holder.INSTANCE;
-  }
+    public String getMailTemplatePath() {
+        return config.getString(ConfigConstants.MAIL_TEMPLATES_PATH);
+    }
 
-  private static final class Holder {
-    private static final ConfigRegistry INSTANCE = new ConfigRegistry();
-  }
+    public static ConfigRegistry instance() {
+        return Holder.INSTANCE;
+    }
+
+    private static final class Holder {
+        private static final ConfigRegistry INSTANCE = new ConfigRegistry();
+    }
 }

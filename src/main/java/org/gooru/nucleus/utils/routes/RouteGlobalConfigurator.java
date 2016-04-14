@@ -9,13 +9,13 @@ import org.gooru.nucleus.utils.constants.ConfigConstants;
 
 public class RouteGlobalConfigurator implements RouteConfigurator {
 
-  @Override
-  public void configureRoutes(Vertx vertx, Router router, JsonObject config) {
-    final long maxSizeInMb = config.getLong(ConfigConstants.MAX_REQ_BODY_SIZE, 5L);
-    BodyHandler bodyHandler = BodyHandler.create().setBodyLimit(maxSizeInMb * 1024 * 1024);
+    @Override
+    public void configureRoutes(Vertx vertx, Router router, JsonObject config) {
+        final long maxSizeInMb = config.getLong(ConfigConstants.MAX_REQ_BODY_SIZE, 5L);
+        BodyHandler bodyHandler = BodyHandler.create().setBodyLimit(maxSizeInMb * 1024 * 1024);
 
-    router.route().handler(bodyHandler);
+        router.route().handler(bodyHandler);
 
-  }
+    }
 
 }

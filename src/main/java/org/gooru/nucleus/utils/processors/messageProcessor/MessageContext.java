@@ -5,11 +5,11 @@ import io.vertx.core.json.JsonObject;
 
 public interface MessageContext {
 
-  JsonObject requestBody();
+    JsonObject requestBody();
 
-  JsonObject requestParams();
+    JsonObject requestParams();
 
-  MultiMap headers();
+    MultiMap headers();
 
-  String command();
+    String command();
 }

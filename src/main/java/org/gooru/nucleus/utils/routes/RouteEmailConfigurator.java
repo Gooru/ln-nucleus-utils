@@ -19,23 +19,24 @@ import org.slf4j.LoggerFactory;
 
 class RouteEmailConfigurator implements RouteConfigurator {
 
-  private static final Logger LOG = LoggerFactory.getLogger("org.gooru.nucleus.utils.bootstrap.ServerVerticle");
+    private static final Logger LOG = LoggerFactory.getLogger("org.gooru.nucleus.utils.bootstrap.ServerVerticle");
 
-  private EventBus eb = null;
-  private long mbusTimeout;
+    private EventBus eb = null;
+    private long mbusTimeout;
 
-  @Override
-  public void configureRoutes(Vertx vertx, Router router, JsonObject config) {
-    eb = vertx.eventBus();
-    mbusTimeout = config.getLong(ConfigConstants.MBUS_TIMEOUT, RouteConstants.DEFAULT_TIMEOUT);
-    router.post(RouteConstants.EP_NUCLEUS_UTILS_EMAIL).handler(this::sendEmail);
-  }
+    @Override
+    public void configureRoutes(Vertx vertx, Router router, JsonObject config) {
+        eb = vertx.eventBus();
+        mbusTimeout = config.getLong(ConfigConstants.MBUS_TIMEOUT, RouteConstants.DEFAULT_TIMEOUT);
+        router.post(RouteConstants.EP_NUCLEUS_UTILS_EMAIL).handler(this::sendEmail);
+    }
 
-  private void sendEmail(RoutingContext routingContext) {
-    final DeliveryOptions options =
-      new DeliveryOptions().setSendTimeout(mbusTimeout).addHeader(MessageConstants.MSG_HEADER_OP, CommandConstants.SEND_EMAIL);
-    eb.send(MessagebusEndpoints.MBEP_EMAIL, RouteRequestUtility.getBodyForMessage(routingContext), options,
-      reply -> RouteResponseUtility.responseHandler(routingContext, reply, LOG));
-  }
+    private void sendEmail(RoutingContext routingContext) {
+        final DeliveryOptions options =
+            new DeliveryOptions().setSendTimeout(mbusTimeout).addHeader(MessageConstants.MSG_HEADER_OP,
+                CommandConstants.SEND_EMAIL);
+        eb.send(MessagebusEndpoints.MBEP_EMAIL, RouteRequestUtility.getBodyForMessage(routingContext), options,
+            reply -> RouteResponseUtility.responseHandler(routingContext, reply, LOG));
+    }
 
 }
