@@ -3,13 +3,13 @@ package org.gooru.nucleus.utils.responses.auth;
 import io.vertx.core.eventbus.Message;
 
 public class AuthResponseContextHolderBuilder {
-  private final Message<Object> message;
+    private final Message<Object> message;
 
-  public AuthResponseContextHolderBuilder(Message<Object> message) {
-    this.message = message;
-  }
+    public AuthResponseContextHolderBuilder(Message<Object> message) {
+        this.message = message;
+    }
 
-  public AuthResponseContextHolder build() {
-    return new AuthMessageBusJsonResponseContextHolder(message);
-  }
+    public AuthResponseContextHolder build() {
+        return new AuthMessageBusJsonResponseContextHolder(message);
+    }
 }
