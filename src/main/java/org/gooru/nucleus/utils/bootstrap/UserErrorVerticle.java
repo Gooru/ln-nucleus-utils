@@ -13,9 +13,9 @@ import io.vertx.core.Future;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.json.JsonObject;
 
-public class LoggerVerticle extends AbstractVerticle {
-    private static final Logger LOG = LoggerFactory.getLogger(LoggerVerticle.class);
-    private static final Logger LOGGER = LoggerFactory.getLogger("org.gooru.nucleus.utils.logger");
+public class UserErrorVerticle extends AbstractVerticle {
+    private static final Logger LOG = LoggerFactory.getLogger(UserErrorVerticle.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger("org.gooru.nucleus.utils.user.error");
 
     @Override
     public void start(Future<Void> voidFuture) throws Exception {
@@ -40,9 +40,9 @@ public class LoggerVerticle extends AbstractVerticle {
 
         }).completionHandler(result -> {
             if (result.succeeded()) {
-                LOG.info("Logger end point ready to listen");
+                LOG.info("User Error end point ready to listen");
             } else {
-                LOG.error("Error registering the logger handler. Halting the user machinery");
+                LOG.error("Error registering the user error handler. Halting the user machinery");
                 Runtime.getRuntime().halt(1);
             }
         });

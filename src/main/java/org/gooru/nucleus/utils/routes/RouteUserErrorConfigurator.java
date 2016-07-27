@@ -17,9 +17,9 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 
-public class RouteLoggerConfigurator implements RouteConfigurator {
+public class RouteUserErrorConfigurator implements RouteConfigurator {
 
-    private static final Logger LOG = LoggerFactory.getLogger(RouteLoggerConfigurator.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RouteUserErrorConfigurator.class);
     private EventBus eb = null;
     private long mbusTimeout;
 
@@ -27,13 +27,13 @@ public class RouteLoggerConfigurator implements RouteConfigurator {
     public void configureRoutes(Vertx vertx, Router router, JsonObject config) {
         eb = vertx.eventBus();
         mbusTimeout = config.getLong(ConfigConstants.MBUS_TIMEOUT, RouteConstants.DEFAULT_TIMEOUT);
-        router.post(RouteConstants.EP_NUCLEUS_UTILS_LOGGER).handler(this::logHandler);
+        router.post(RouteConstants.EP_NUCLEUS_UTILS_USER_ERROR).handler(this::userErrorHandler);
 
     }
 
-    private void logHandler(RoutingContext routingContext) {
+    private void userErrorHandler(RoutingContext routingContext) {
         final DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout)
-            .addHeader(MessageConstants.MSG_HEADER_OP, CommandConstants.UTILS_LOGGER);
+            .addHeader(MessageConstants.MSG_HEADER_OP, CommandConstants.USER_ERROR);
         eb.send(MessagebusEndpoints.MBEP_LOGGER, RouteRequestUtility.getBodyForMessage(routingContext), options,
             reply -> RouteResponseUtility.responseHandler(routingContext, reply, LOG));
     }

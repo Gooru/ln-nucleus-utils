@@ -21,9 +21,9 @@
     </appender>
     
     <appender name="LOGGER-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>nucleus-utils-logger.log</file>
+        <file>nucleus-utils-user-logger.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>nucleus-utils-logger.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>nucleus-utils-user-error.%d{yyyy-MM-dd}.log</fileNamePattern>
             <!-- keep 30 days' worth of history -->
             <maxHistory>30</maxHistory>
         </rollingPolicy>
@@ -37,7 +37,7 @@
         <appender-ref ref="FILE"/>
     </logger>
     
-    <logger name="org.gooru.nucleus.utils.logger" level="debug">
+    <logger name="org.gooru.nucleus.utils.user.error" level="debug" additivity="false">
     	<appender-ref ref="LOGGER-FILE"/>
     </logger>
     
