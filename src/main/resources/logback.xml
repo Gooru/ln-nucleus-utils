@@ -19,8 +19,26 @@
             <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
         </encoder>
     </appender>
+    
+    <appender name="LOGGER-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>nucleus-utils-logger.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>nucleus-utils-logger.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <append>true</append>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
 
     <logger name="org.gooru.nucleus" level="debug">
         <appender-ref ref="FILE"/>
     </logger>
+    
+    <logger name="org.gooru.nucleus.utils.logger" level="debug">
+    	<appender-ref ref="LOGGER-FILE"/>
+    </logger>
+    
 </configuration>
