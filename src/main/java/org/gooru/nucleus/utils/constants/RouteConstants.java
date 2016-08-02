@@ -9,6 +9,7 @@ public final class RouteConstants {
 
     // Helper: Operations
     private static final String EMAILS = "emails";
+    private static final String USER_ERROR = "user-error";
 
     // Actual End Point Constants: Note that constant values may be duplicated
     // but
@@ -16,6 +17,7 @@ public final class RouteConstants {
     // point instead of reusing the same
 
     public static final String EP_NUCLEUS_UTILS_EMAIL = API_BASE_ROUTE + EMAILS;
+    public static final String EP_NUCLEUS_UTILS_USER_ERROR = API_BASE_ROUTE + USER_ERROR;
 
     public static final long DEFAULT_TIMEOUT = 30000L;
 

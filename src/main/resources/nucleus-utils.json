@@ -10,7 +10,8 @@
   "request.body.size.max.mb": 5,
   "verticles.deploy.list": [
     "org.gooru.nucleus.utils.bootstrap.AuthVerticle",
-    "org.gooru.nucleus.utils.bootstrap.EmailVerticle"
+    "org.gooru.nucleus.utils.bootstrap.EmailVerticle",
+    "org.gooru.nucleus.utils.bootstrap.UserErrorVerticle"
   ],
   "mail.config.properties": {
     "mail.transport.protocol": "smtp",
