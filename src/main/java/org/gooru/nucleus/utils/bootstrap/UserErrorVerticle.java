@@ -22,20 +22,23 @@ public class UserErrorVerticle extends AbstractVerticle {
         EventBus eb = vertx.eventBus();
         eb.consumer(MessagebusEndpoints.MBEP_LOGGER, message -> {
             vertx.executeBlocking(future -> {
-                //MessageResponse result = new ProcessorBuilder(message).build().process();
-                JsonObject body = (JsonObject) message.body();
-                JsonObject httpBody = body.getJsonObject(MessageConstants.MSG_HTTP_BODY);
-                if (httpBody != null && !httpBody.isEmpty()) {
-                    httpBody.put("server_timestamp", new Timestamp(System.currentTimeMillis()).toString());
-                    LOGGER.info(httpBody.toString());
-                } else {
-                    LOG.debug("invalid http body received in message");
+                try {
+                    //MessageResponse result = new ProcessorBuilder(message).build().process();
+                    JsonObject body = (JsonObject) message.body();
+                    JsonObject httpBody = body.getJsonObject(MessageConstants.MSG_HTTP_BODY);
+                    if (httpBody != null && !httpBody.isEmpty()) {
+                        httpBody.put("server_timestamp", new Timestamp(System.currentTimeMillis()).toString());
+                        LOGGER.info(httpBody.toString());
+                    } else {
+                        LOG.debug("invalid http body received in message");
+                    }
+                    future.complete();
+                } catch (Throwable e) {
+                    LOG.warn("Not able to log user error", e);
+                    future.fail(e);
                 }
-                future.complete(new MessageResponse.Builder().setResponseBody(null).setStatusOkay().successful()
-                    .build());
             }, res -> {
-                MessageResponse result = (MessageResponse) res.result();
-                message.reply(result.reply(), result.deliveryOptions());
+                // NOOP No one is waiting for reply anymore
             });
 
         }).completionHandler(result -> {
