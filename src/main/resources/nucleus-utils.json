@@ -1,15 +1,10 @@
 {
   "comment": "This is bundled JSON file. Idea is that we should externalize this also as part of build. Currently this is going to hold the dev env information",
-  "redis": {
-    "host": "127.0.0.1",
-    "port": 6379
-  },
   "http.port": 8080,
   "metrics.periodicity.seconds": 300,
   "message.bus.send.timeout.milliseconds": 30000,
   "request.body.size.max.mb": 5,
   "verticles.deploy.list": [
-    "org.gooru.nucleus.utils.bootstrap.AuthVerticle",
     "org.gooru.nucleus.utils.bootstrap.EmailVerticle",
     "org.gooru.nucleus.utils.bootstrap.UserErrorVerticle"
   ],

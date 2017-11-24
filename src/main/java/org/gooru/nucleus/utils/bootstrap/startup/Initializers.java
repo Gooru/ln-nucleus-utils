@@ -6,14 +6,12 @@ import java.util.List;
 
 import org.gooru.nucleus.utils.infra.ConfigRegistry;
 import org.gooru.nucleus.utils.infra.MailClient;
-import org.gooru.nucleus.utils.infra.RedisClient;
 
 public class Initializers implements Iterable<Initializer> {
     private final Iterator<Initializer> internalIterator;
 
     public Initializers() {
         final List<Initializer> initializers = new ArrayList<>();
-        initializers.add(RedisClient.instance());
         initializers.add(MailClient.instance());
         initializers.add(ConfigRegistry.instance());
         internalIterator = initializers.iterator();

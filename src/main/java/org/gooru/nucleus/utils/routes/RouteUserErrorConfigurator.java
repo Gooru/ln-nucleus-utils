@@ -2,11 +2,11 @@ package org.gooru.nucleus.utils.routes;
 
 import org.gooru.nucleus.utils.constants.CommandConstants;
 import org.gooru.nucleus.utils.constants.ConfigConstants;
+import org.gooru.nucleus.utils.constants.HttpConstants;
 import org.gooru.nucleus.utils.constants.MessageConstants;
 import org.gooru.nucleus.utils.constants.MessagebusEndpoints;
 import org.gooru.nucleus.utils.constants.RouteConstants;
 import org.gooru.nucleus.utils.routes.utils.RouteRequestUtility;
-import org.gooru.nucleus.utils.routes.utils.RouteResponseUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,8 +34,8 @@ public class RouteUserErrorConfigurator implements RouteConfigurator {
     private void userErrorHandler(RoutingContext routingContext) {
         final DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout)
             .addHeader(MessageConstants.MSG_HEADER_OP, CommandConstants.USER_ERROR);
-        eb.send(MessagebusEndpoints.MBEP_LOGGER, RouteRequestUtility.getBodyForMessage(routingContext), options,
-            reply -> RouteResponseUtility.responseHandler(routingContext, reply, LOG));
+        eb.send(MessagebusEndpoints.MBEP_LOGGER, RouteRequestUtility.getBodyForMessage(routingContext), options);
+        routingContext.response().putHeader(HttpConstants.HEADER_CONTENT_TYPE, HttpConstants.CONTENT_TYPE_JSON).end();
     }
 
 }

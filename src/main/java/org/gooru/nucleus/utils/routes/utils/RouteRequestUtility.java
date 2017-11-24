@@ -21,10 +21,6 @@ public final class RouteRequestUtility {
         if (httpBody != null) {
             result.put(MessageConstants.MSG_HTTP_BODY, httpBody);
         }
-        String userContext = routingContext.get(MessageConstants.MSG_USER_CONTEXT_HOLDER);
-        if (userContext != null) {
-            result.put(MessageConstants.MSG_USER_CONTEXT_HOLDER, new JsonObject(userContext));
-        }
 
         MultiMap params = routingContext.request().params();
         if (params != null && params.size() > 0) {
